@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Todo-List</h2>
+    </div>
+    <div class="col">
+      <p>Search Bar</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Bezeichnung</th>
+          <th>Fällig bis</th>
+          <th>Kategorie</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tbody>
+        <tr *ngFor="let todo of todos">
+          <ng-container *ngComponentOutlet="ListEntryComponent; content: [todo]"></ng-container>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
