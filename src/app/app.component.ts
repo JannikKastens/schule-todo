@@ -17,7 +17,7 @@ export class AppComponent {
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {
-      this.isRouteListe = (router.url === '/liste');
+      this.isRouteListe = (router.url === '/');
     });
   }
 }
