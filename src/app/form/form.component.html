@@ -1,1 +1,25 @@
-<h2>Neues Todo anlegen</h2>
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <h2>Neues Todo anlegen</h2>
+    <hr>
+    <div>
+        <label for="category">Kategorie:</label>
+        <input type="text" id="category" formControlName="category">
+    </div>
+    <div>
+        <label for="description">Bezeichnung:</label>
+        <textarea id="description" formControlName="description"></textarea>
+    </div>
+    <div>
+        <label for="dueDate">Fällig bis:</label>
+        <input type="date" id="dueDate" formControlName="dueDate">
+    </div>
+    <div>
+        <label for="priority">Priorität:</label>
+        <select id="priority" formControlName="priority">
+            <option value="low">Niedrig</option>
+            <option value="medium">Normal</option>
+            <option value="high">Hoch</option>
+        </select>
+    </div>
+    <button type="submit">Todo anlegen</button>
+</form>
