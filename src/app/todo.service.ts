@@ -1,51 +1,66 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './models/Todo';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  private todos: Todo[] = [];
+  private _todos = new BehaviorSubject<Todo[]>([]);
+  public readonly todos$ = this._todos.asObservable();
   private localStorageKey = 'todos';
 
   constructor() {
     this.loadTodos();
-    if (this.todos.length === 0) {
+    if (this._todos.getValue().length === 0) {
       this.initializeTodos();
     }
+    console.log('TodoService initialized');
   }
 
   private initializeTodos() {
-    this.todos = [
+    const initialTodos = [
       new Todo(1, 'Sample Todo 1', new Date(), 'Category 1', 1),
       new Todo(2, 'Sample Todo 2', new Date(), 'Category 2', 2),
       new Todo(3, 'Sample Todo 3', new Date(), 'Category 3', 3)
     ];
+    this._todos.next(initialTodos);
     this.saveTodos();
   }
 
   private loadTodos() {
     const storedTodos = localStorage.getItem(this.localStorageKey);
     if (storedTodos) {
-      this.todos = JSON.parse(storedTodos);
+      this._todos.next(JSON.parse(storedTodos));
     }
   }
 
   private saveTodos() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.todos));
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this._todos.getValue()));
   }
 
   getTodos() {
-    return this.todos;
+    return this._todos.getValue();
   }
 
   addTodo(todo: Todo) {
-    this.todos.push(todo);
+    const currentTodos = this._todos.getValue();
+    currentTodos.push(todo);
+    this._todos.next(currentTodos);
     this.saveTodos();
   }
 
   deleteTodo(id: number) {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+    console.log('Deleting todo with id:', id);
+    const updatedTodos = this._todos.getValue().filter(todo => {
+      const keep = todo.id !== id;
+      if (!keep) {
+        console.log('Found todo to delete:', todo);
+      }
+      return keep;
+    });
+    console.log('Updated todos:', updatedTodos);
+    this._todos.next(updatedTodos);
     this.saveTodos();
   }
 }
