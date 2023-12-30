@@ -1,0 +1,7 @@
+.list-group-item.active {
+    font-weight: bold;
+  }
+
+  .list-group-item a {
+    cursor: pointer;
+  }

@@ -1,9 +1,9 @@
 <div class="sidebar">
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><a>Alle</a></li>
-    <li class="list-group-item"><a>Hausarbeit</a></li>
-    <li class="list-group-item"><a>Finanzen</a></li>
-    <li class="list-group-item"><a>Schule</a></li>
-    <li class="list-group-item"><a>Verein</a></li>
+    <li class="list-group-item" [class.active]="selectedCategory === 'Alle'"><a (click)="filterTodos('Alle')">Alle</a></li>
+    <li class="list-group-item" [class.active]="selectedCategory === 'Hausarbeit'"><a (click)="filterTodos('Hausarbeit')">Hausarbeit</a></li>
+    <li class="list-group-item" [class.active]="selectedCategory === 'Finanzen'"><a (click)="filterTodos('Finanzen')">Finanzen</a></li>
+    <li class="list-group-item" [class.active]="selectedCategory === 'Schule'"><a (click)="filterTodos('Schule')">Schule</a></li>
+    <li class="list-group-item" [class.active]="selectedCategory === 'Verein'"><a (click)="filterTodos('Verein')">Verein</a></li>
   </ul>
 </div>

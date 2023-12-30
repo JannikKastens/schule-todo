@@ -9,12 +9,14 @@ export class TodoService {
   private _todos = new BehaviorSubject<Todo[]>([]);
   public readonly todos$ = this._todos.asObservable();
   private localStorageKey = 'todos';
+  private allTodos: Todo[] = [];
 
   constructor() {
     this.loadTodos();
     if (this._todos.getValue().length === 0) {
       this.initializeTodos();
     }
+    this.allTodos = this._todos.getValue();
     console.log('TodoService initialized');
   }
 
@@ -72,6 +74,15 @@ export class TodoService {
       currentTodos[todoIndex] = updatedTodo;
       this._todos.next(currentTodos);
       this.saveTodos();
+    }
+  }
+
+  filterTodos(category: string) {
+    if (category === 'Alle') {
+      this._todos.next(this.allTodos);
+    } else {
+      const filteredTodos = this.allTodos.filter(todo => todo.category === category);
+      this._todos.next(filteredTodos);
     }
   }
 }

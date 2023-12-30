@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  selectedCategory = 'Alle';
 
+  constructor(private todoService: TodoService) {}
+
+  filterTodos(category: string) {
+    this.selectedCategory = category;
+    this.todoService.filterTodos(category);
+  }
 }
