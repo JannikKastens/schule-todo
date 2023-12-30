@@ -19,7 +19,7 @@ export class PriorityComponent {
       case 3:
         return 'bi-caret-up-fill';
       case 2:
-        return 'bi-caret-right-fill';
+        return 'bi-circle-fill';
       case 1:
         return 'bi-caret-down-fill';
       default:
