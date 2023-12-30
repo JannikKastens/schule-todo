@@ -1,8 +1,8 @@
-<td>{{todo?.priority}}</td>
+<td><app-priority [priority]="todo?.priority"></app-priority></td>
 <td>{{todo?.id}}</td>
 <td>{{todo?.description}}</td>
 <td>{{todo?.dueDate | date:'dd.MM.yyyy':'UTC'}}</td>
 <td>{{todo?.category}}</td>
 <td>
-  <button (click)="deleteTodo()">Delete</button>
+  <button (click)="deleteTodo()"><i class="bi bi-trash"></i></button>
 </td>

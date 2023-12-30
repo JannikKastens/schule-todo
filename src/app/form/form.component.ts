@@ -18,8 +18,7 @@ export class FormComponent {
     priority: new FormControl(''),
     category: new FormControl(''),
     description: new FormControl(''),
-    dueDate: new FormControl(''),
-    done: new FormControl('')
+    dueDate: new FormControl('')
   });
 
   constructor(private todoService: TodoService) { }
@@ -32,7 +31,8 @@ export class FormComponent {
       formValue.description ?? '', 
       dueDate,
       formValue.category ?? '', 
-      parseInt(formValue.priority ?? '0') 
+      parseInt(formValue.priority ?? '0'),
+      false
     );
     this.todoService.addTodo(newTodo);
     this.todoForm.reset();

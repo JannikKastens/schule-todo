@@ -4,6 +4,7 @@ export class Todo {
     public description: string,
     public dueDate: Date,
     public category: string,
-    public priority: number
+    public priority: number,
+    public completed: boolean
   ) { }
 }
