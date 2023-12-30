@@ -64,4 +64,14 @@ export class TodoService {
     this._todos.next(updatedTodos);
     this.saveTodos();
   }
+
+  updateTodo(updatedTodo: Todo) {
+    const currentTodos = this._todos.getValue();
+    const todoIndex = currentTodos.findIndex(todo => todo.id === updatedTodo.id);
+    if (todoIndex !== -1) {
+      currentTodos[todoIndex] = updatedTodo;
+      this._todos.next(currentTodos);
+      this.saveTodos();
+    }
+  }
 }

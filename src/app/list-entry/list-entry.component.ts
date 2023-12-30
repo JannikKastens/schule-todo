@@ -26,4 +26,11 @@ export class ListEntryComponent {
     }
   }
 
+  toggleCompleted() {
+    if (this.todo) {
+      this.todo.completed = !this.todo.completed;
+      this.todoService.updateTodo(this.todo);
+    }
+  }
+
 }

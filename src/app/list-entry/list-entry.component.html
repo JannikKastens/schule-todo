@@ -1,3 +1,4 @@
+<td><input type="checkbox" [checked]="todo?.completed" (change)="toggleCompleted()"></td>
 <td><app-priority [priority]="todo?.priority"></app-priority></td>
 <td>{{todo?.id}}</td>
 <td>{{todo?.description}}</td>
