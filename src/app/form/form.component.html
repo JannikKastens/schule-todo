@@ -1,25 +1,28 @@
-<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
-    <h2>Neues Todo anlegen</h2>
-    <hr>
-    <div>
-        <label for="category">Kategorie:</label>
-        <input type="text" id="category" formControlName="category">
-    </div>
-    <div>
-        <label for="description">Bezeichnung:</label>
-        <textarea id="description" formControlName="description"></textarea>
-    </div>
-    <div>
-        <label for="dueDate">Fällig bis:</label>
-        <input type="date" id="dueDate" formControlName="dueDate">
-    </div>
-    <div>
-        <label for="priority">Priorität:</label>
-        <select id="priority" formControlName="priority">
-            <option value="low">Niedrig</option>
-            <option value="medium">Normal</option>
-            <option value="high">Hoch</option>
-        </select>
-    </div>
-    <button type="submit">Todo anlegen</button>
-</form>
+<div class="col-lg-6 offset-lg-3">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="container mt-5">
+        <h2 class="mb-3">Neues Todo anlegen</h2>
+        <hr>
+        <div class="form-group mt-3">
+            <label for="description">Bezeichnung:</label>
+            <textarea id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label for="dueDate">Fällig bis:</label>
+            <input type="date" id="dueDate" formControlName="dueDate" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="category">Kategorie:</label>
+            <select id="category" formControlName="category" class="form-control dropdown">
+                <option value="Hausarbeit">Hausarbeit</option>
+                <option value="Finanzen">Finanzen</option>
+                <option value="Schule">Schule</option>
+                <option value="Verein">Verein</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label for="priority">Priorität:</label>
+            <app-priority-chooser (prioritySelected)="todoForm.controls['priority'].setValue($event)"></app-priority-chooser>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Todo anlegen</button>
+    </form>
+</div>

@@ -25,7 +25,7 @@ export class TodoService {
       new Todo(1, 'Sample Todo 1', new Date(), 'Hausarbeit', 1, false),
       new Todo(2, 'Sample Todo 2', new Date(), 'Finanzen', 2, false),
       new Todo(3, 'Sample Todo 3', new Date(), 'Schule', 3, false),
-      new Todo(4, 'Sample Todo 3', new Date(), 'Verein', 2, false)
+      new Todo(4, 'Sample Todo 4', new Date(), 'Verein', 2, false)
     ];
     this._todos.next(initialTodos);
     this.saveTodos();

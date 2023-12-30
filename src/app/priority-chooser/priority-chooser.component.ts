@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-priority-chooser',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './priority-chooser.component.css'
 })
 export class PriorityChooserComponent {
+  @Output() prioritySelected = new EventEmitter<number>();
 
+  selectPriority(priority: number) {
+    this.prioritySelected.emit(priority);
+  }
 }
