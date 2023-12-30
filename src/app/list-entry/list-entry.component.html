@@ -1,9 +1,9 @@
-<td><input type="checkbox" [checked]="todo?.completed" (change)="toggleCompleted()"></td>
-<td><app-priority [priority]="todo?.priority"></app-priority></td>
-<td>{{todo?.id}}</td>
-<td>{{todo?.description}}</td>
-<td>{{todo?.dueDate | date:'dd.MM.yyyy':'UTC'}}</td>
-<td>{{todo?.category}}</td>
+<td [class.completed]="todo?.completed"><input type="checkbox" [checked]="todo?.completed" (change)="toggleCompleted()"></td>
+<td [class.completed]="todo?.completed"><app-priority [priority]="todo?.priority"></app-priority></td>
+<td [class.completed]="todo?.completed">{{todo?.id}}</td>
+<td [class.completed]="todo?.completed">{{todo?.description}}</td>
+<td [class.completed]="todo?.completed">{{todo?.dueDate | date:'dd.MM.yyyy':'UTC'}}</td>
+<td [class.completed]="todo?.completed">{{todo?.category}}</td>
 <td>
   <button (click)="deleteTodo()"><i class="bi bi-trash"></i></button>
 </td>
