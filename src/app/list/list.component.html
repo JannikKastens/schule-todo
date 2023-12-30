@@ -4,9 +4,10 @@
       <h2>Todo-List</h2>
     </div>
     <div class="col">
-      <p>Search Bar</p>
-    </div>
-  </div>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input type="text" class="form-control" placeholder="Search..." (input)="searchTodos(getInputValue($event))" />
+      </div>    </div>
   <div class="row">
     <div class="col">
       <table class="table">

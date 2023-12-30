@@ -85,4 +85,14 @@ export class TodoService {
       this._todos.next(filteredTodos);
     }
   }
+
+  searchTodos(searchTerm: string) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const filteredTodos = this.allTodos.filter(todo =>
+      todo.description.toLowerCase().includes(lowerCaseSearchTerm) ||
+      todo.dueDate.toString().toLowerCase().includes(lowerCaseSearchTerm) ||
+      todo.category.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+    this._todos.next(filteredTodos);
+  }
 }

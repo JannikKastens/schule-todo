@@ -34,4 +34,13 @@ export class ListComponent {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  searchTodos(searchTerm: string) {
+    this.todoService.searchTodos(searchTerm);
+  }
+
+  getInputValue(event: Event): string {
+    const inputValue = (event.target as HTMLInputElement)?.value;
+    return inputValue || ''; // Return an empty string if inputValue is null or undefined
+  }
 }
