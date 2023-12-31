@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, inject } from '@angular/core';
 import { Todo } from "../models/Todo";
 import { TodoService } from "../todo.service";
 import { CommonModule } from '@angular/common';
@@ -16,8 +16,17 @@ import { PriorityComponent } from '../priority/priority.component';
 })
 export class ListEntryComponent {
   @Input() todo?: Todo;
+  showDeleteButton?: boolean;
+  private todoService = inject(TodoService);
 
-  constructor(private todoService: TodoService, private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef) { }
+
+  ngOnInit() {
+    this.todoService.getShowDeleteButton().subscribe(value => {
+      console.log('Received showDeleteButton update:', value);
+      this.showDeleteButton = value;
+    });
+  }
 
   deleteTodo() {
     if (this.todo) {

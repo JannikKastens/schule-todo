@@ -5,5 +5,5 @@
 <td [class.completed]="todo?.completed">{{todo?.dueDate | date:'dd.MM.yyyy':'UTC'}}</td>
 <td [class.completed]="todo?.completed">{{todo?.category}}</td>
 <td>
-  <button (click)="deleteTodo()"><i class="bi bi-trash"></i></button>
+  <button [hidden]="!showDeleteButton" (click)="deleteTodo()"><i class="bi bi-trash"></i></button>
 </td>

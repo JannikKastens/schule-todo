@@ -9,11 +9,9 @@
                 <label for="moveCompletedTodos">Fertige Todos nach unten verschieben</label>
             </div>
             <div class="container">
-                <input type="checkbox" id="showDeleteButton" name="showDeleteButton">
+                <input type="checkbox" id="showDeleteButton" name="showDeleteButton" [(ngModel)]="showDeleteButton"
+                    (ngModelChange)="updateShowDeleteButton($event)">
                 <label for="showDeleteButton">Löschen-Button anzeigen</label>
-            </div>
-            <div class="container">
-                <button class="btn btn-primary">Speichern</button>
             </div>
         </div>
     </div>

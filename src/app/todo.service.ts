@@ -9,7 +9,9 @@ export class TodoService {
   private _todos = new BehaviorSubject<Todo[]>([]);
   public readonly todos$ = this._todos.asObservable();
   private localStorageKey = 'todos';
+  private localStorageSettingsKey = 'settings';
   private allTodos: Todo[] = [];
+  private showDeleteButton = new BehaviorSubject<boolean>(false);
 
   constructor() {
     this.loadTodos();
@@ -17,6 +19,7 @@ export class TodoService {
       this.initializeTodos();
     }
     this.allTodos = this._todos.getValue();
+    this.loadSettings();
     console.log('TodoService initialized');
   }
 
@@ -94,5 +97,29 @@ export class TodoService {
       todo.category.toLowerCase().includes(lowerCaseSearchTerm)
     );
     this._todos.next(filteredTodos);
+  }
+
+  getShowDeleteButton() {
+    return this.showDeleteButton.asObservable();
+  }
+
+  setShowDeleteButton(value: boolean) {
+    this.showDeleteButton.next(value);
+    this.saveSettings();
+  }
+
+  private loadSettings() {
+    const storedSettings = localStorage.getItem(this.localStorageSettingsKey);
+    if (storedSettings) {
+      const settings = JSON.parse(storedSettings);
+      this.showDeleteButton.next(settings.showDeleteButton);
+    }
+  }
+
+  private saveSettings() {
+    const settings = {
+      showDeleteButton: this.showDeleteButton.getValue()
+    };
+    localStorage.setItem(this.localStorageSettingsKey, JSON.stringify(settings));
   }
 }
