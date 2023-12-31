@@ -1,0 +1,14 @@
+i {
+  font-size: 24px;
+  opacity: 0.5;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+i.selected {
+  opacity: 1;
+}
+
+.container {
+  padding-left: 0;
+}

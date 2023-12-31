@@ -1,3 +1,5 @@
-<i class="bi bi-caret-up-fill" (click)="selectPriority(3)"></i>
-<i class="bi bi-circle-fill" (click)="selectPriority(2)"></i>
-<i class="bi bi-caret-down-fill" (click)="selectPriority(1)"></i>
+<div class="container">
+    <i class="bi bi-caret-up-fill" [class.selected]="isSelected(3)" (click)="selectPriority(3)"></i>
+    <i class="bi bi-circle-fill" [class.selected]="isSelected(2)" (click)="selectPriority(2)"></i>
+    <i class="bi bi-caret-down-fill" [class.selected]="isSelected(1)" (click)="selectPriority(1)"></i>
+</div>
