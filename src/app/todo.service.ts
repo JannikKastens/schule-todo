@@ -58,15 +58,10 @@ export class TodoService {
   }
 
   deleteTodo(id: number) {
-    console.log('Deleting todo with id:', id);
     const updatedTodos = this._todos.getValue().filter(todo => {
       const keep = todo.id !== id;
-      if (!keep) {
-        console.log('Found todo to delete:', todo);
-      }
       return keep;
     });
-    console.log('Updated todos:', updatedTodos);
     this._todos.next(updatedTodos);
     this.saveTodos();
   }
@@ -128,11 +123,11 @@ export class TodoService {
 
 
   sortTodos() {
-    console.log('sortTodos method called');
-    if (this.moveCompletedTodos) {
-      const sortedTodos = [...this._todos.getValue()].sort((a, b) => Number(a.completed) - Number(b.completed));
-      this._todos.next(sortedTodos);
+    let sortedTodos = [...this._todos.getValue()];
+    if (this.moveCompletedTodos.getValue()) {
+      sortedTodos.sort((a, b) => Number(a.completed) - Number(b.completed));
     }
+    this._todos.next(sortedTodos);
   }
 
   getMoveCompletedTodos(): Observable<boolean> {

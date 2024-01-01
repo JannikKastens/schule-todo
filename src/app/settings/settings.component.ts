@@ -30,7 +30,6 @@ export class SettingsComponent {
 
   sortTodos(value: boolean) {
     if (typeof value === 'boolean') {
-      console.log('Updating moveCompletedTodos in TodoService:', value);
       this.todoService.setMoveCompletedTodos(value);
     }
   }

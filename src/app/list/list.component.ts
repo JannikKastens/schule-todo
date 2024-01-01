@@ -22,7 +22,6 @@ export class ListComponent {
 
   constructor(private todoService: TodoService) {
     this.todos = todoService.getTodos();
-    console.log('ListComponent initialized');
   }
 
   ngOnInit() {

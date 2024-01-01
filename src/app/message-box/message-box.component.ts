@@ -22,6 +22,5 @@ export class MessageBoxComponent {
       this.message = message;
       this.messageType = type;
     });
-    console.log('MessageBoxComponent initialized');
   }
 }

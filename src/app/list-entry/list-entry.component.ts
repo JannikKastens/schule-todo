@@ -24,7 +24,6 @@ export class ListEntryComponent {
 
   ngOnInit() {
     this.todoService.getShowDeleteButton().subscribe(value => {
-      console.log('Received showDeleteButton update:', value);
       this.showDeleteButton = value;
     });
   }
