@@ -13,19 +13,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class SettingsComponent {
   showDeleteButton?: boolean;
-  private todoService = inject(TodoService);
+  moveCompletedTodos?: boolean;
 
-  constructor() {
+  constructor(private todoService: TodoService) {
     this.todoService.getShowDeleteButton().subscribe(value => {
       this.showDeleteButton = value;
     });
+    this.todoService.getMoveCompletedTodos().subscribe(value => {
+      this.moveCompletedTodos = value;
+    });
   }
 
-  updateShowDeleteButton(value: boolean | Event) { // Update the parameter type to handle Event
+  updateShowDeleteButton(value: boolean) {
+    this.todoService.setShowDeleteButton(value);
+  }
+
+  sortTodos(value: boolean) {
     if (typeof value === 'boolean') {
-      console.log('Updating showDeleteButton in TodoService:', value);
-      this.todoService.setShowDeleteButton(value);
+      console.log('Updating moveCompletedTodos in TodoService:', value);
+      this.todoService.setMoveCompletedTodos(value);
     }
   }
-
 }

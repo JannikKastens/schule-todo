@@ -26,9 +26,20 @@ export class ListComponent {
   }
 
   ngOnInit() {
-    this.subscription = this.todoService.todos$.subscribe(todos => {
-      this.todos = todos;
-    });
+    this.subscription.add(
+      this.todoService.getMoveCompletedTodos().subscribe(moveCompleted => {
+        if (moveCompleted) {
+          this.todoService.sortTodos(moveCompleted);
+          this.todos = this.todoService.getTodos();
+        }
+      })
+    );
+  
+    this.subscription.add(
+      this.todoService.todos$.subscribe(todos => {
+        this.todos = todos;
+      })
+    );
   }
 
   ngOnDestroy() {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './models/Todo';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,14 @@ import { BehaviorSubject } from 'rxjs';
 export class TodoService {
   private _todos = new BehaviorSubject<Todo[]>([]);
   public readonly todos$ = this._todos.asObservable();
+  private showDeleteButton = new BehaviorSubject<boolean>(false);
+  private moveCompletedTodos = new BehaviorSubject<boolean>(false);
+
+  private allTodos: Todo[] = [];
+
   private localStorageKey = 'todos';
   private localStorageSettingsKey = 'settings';
-  private allTodos: Todo[] = [];
-  private showDeleteButton = new BehaviorSubject<boolean>(false);
+
 
   constructor() {
     this.loadTodos();
@@ -38,6 +42,7 @@ export class TodoService {
     const storedTodos = localStorage.getItem(this.localStorageKey);
     if (storedTodos) {
       this._todos.next(JSON.parse(storedTodos));
+      this.sortTodos(this.moveCompletedTodos.getValue());
     }
   }
 
@@ -113,13 +118,33 @@ export class TodoService {
     if (storedSettings) {
       const settings = JSON.parse(storedSettings);
       this.showDeleteButton.next(settings.showDeleteButton);
+      this.moveCompletedTodos.next(settings.moveCompletedTodos);
     }
   }
 
   private saveSettings() {
     const settings = {
-      showDeleteButton: this.showDeleteButton.getValue()
+      showDeleteButton: this.showDeleteButton.getValue(),
+      moveCompletedTodos: this.moveCompletedTodos.getValue()
     };
     localStorage.setItem(this.localStorageSettingsKey, JSON.stringify(settings));
+  }
+
+
+  sortTodos(moveCompletedDown: boolean) {
+    console.log('sortTodos method called');
+    if (moveCompletedDown) {
+      const sortedTodos = [...this._todos.getValue()].sort((a, b) => Number(a.completed) - Number(b.completed));
+      this._todos.next(sortedTodos);
+    }
+  }
+
+  getMoveCompletedTodos(): Observable<boolean> {
+    return this.moveCompletedTodos.asObservable();
+  }
+
+  setMoveCompletedTodos(value: boolean) {
+    this.moveCompletedTodos.next(value);
+    this.saveSettings();
   }
 }
