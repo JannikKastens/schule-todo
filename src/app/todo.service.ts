@@ -19,15 +19,11 @@ export class TodoService {
 
   constructor() {
     this.loadTodos();
-    if (this._todos.getValue().length === 0) {
-      this.initializeTodos();
-    }
     this.allTodos = this._todos.getValue();
     this.loadSettings();
-    console.log('TodoService initialized');
   }
 
-  private initializeTodos() {
+  initializeTodos() {
     const initialTodos = [
       new Todo(1, 'Sample Todo 1', new Date(), 'Hausarbeit', 1, false),
       new Todo(2, 'Sample Todo 2', new Date(), 'Finanzen', 2, false),
@@ -146,5 +142,10 @@ export class TodoService {
   setMoveCompletedTodos(value: boolean) {
     this.moveCompletedTodos.next(value);
     this.saveSettings();
+  }
+
+  deleteAllTodos() {
+    this._todos.next([]);
+    this.saveTodos();
   }
 }

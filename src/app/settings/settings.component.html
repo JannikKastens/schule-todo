@@ -1,18 +1,33 @@
 <h2>Einstellungen</h2>
 <hr>
 <div class="container">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col">
-            <h4>Todo-Liste</h4>
             <div class="container">
-                <input type="checkbox" id="moveCompletedTodos" name="moveCompletedTodos" [(ngModel)]="moveCompletedTodos"
-                (ngModelChange)="sortTodos($event)">
-                <label for="moveCompletedTodos">Fertige Todos nach unten verschieben</label>
+                <h4>Todo-Liste</h4>
+                <div class="container">
+                    <input type="checkbox" id="moveCompletedTodos" name="moveCompletedTodos"
+                        [(ngModel)]="moveCompletedTodos" (ngModelChange)="sortTodos($event)">
+                    <label for="moveCompletedTodos">Fertige Todos nach unten verschieben</label>
+                </div>
+                <div class="container">
+                    <input type="checkbox" id="showDeleteButton" name="showDeleteButton" [(ngModel)]="showDeleteButton"
+                        (ngModelChange)="updateShowDeleteButton($event)">
+                    <label for="showDeleteButton">Löschen-Button anzeigen</label>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
             <div class="container">
-                <input type="checkbox" id="showDeleteButton" name="showDeleteButton" [(ngModel)]="showDeleteButton"
-                    (ngModelChange)="updateShowDeleteButton($event)">
-                <label for="showDeleteButton">Löschen-Button anzeigen</label>
+                <h4>Dev-Funktionen</h4>
+                <div class="container">
+                    <a href="#" (click)="deleteAllTodos()">Alle löschen</a>
+                </div>
+                <div class="container">
+                    <a href="#" (click)="generateTestTodos()">Testdaten anlegen</a>
+                </div>
             </div>
         </div>
     </div>

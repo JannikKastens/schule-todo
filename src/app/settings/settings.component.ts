@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { FormsModule } from '@angular/forms';
 
@@ -33,5 +33,13 @@ export class SettingsComponent {
       console.log('Updating moveCompletedTodos in TodoService:', value);
       this.todoService.setMoveCompletedTodos(value);
     }
+  }
+
+  deleteAllTodos() {
+    this.todoService.deleteAllTodos();
+  }
+
+  generateTestTodos() {
+    this.todoService.initializeTodos();
   }
 }
