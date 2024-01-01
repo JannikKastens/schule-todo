@@ -15,10 +15,15 @@ import { MessageBoxComponent } from "./message-box/message-box.component";
 export class AppComponent {
   title = 'schule-todo';
   isRouteListe = false;
+  showSidebar = true;
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {
       this.isRouteListe = (router.url === '/');
     });
+  }
+
+  toggleSidebar() {
+    this.showSidebar = !this.showSidebar;
   }
 }

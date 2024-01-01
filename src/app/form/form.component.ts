@@ -46,7 +46,6 @@ export class FormComponent {
     // Find the highest id among the current todos
     const highestId = currentTodos.reduce((maxId, todo) => Math.max(maxId, todo.id), 0);
 
-    // Assign the next integer as the id for the new todo
     const newId = highestId + 1;
 
     const newTodo = new Todo(
@@ -61,5 +60,4 @@ export class FormComponent {
     this.notificationService.displayNotification('Todo created successfully', 'success');
     this.todoForm.reset();
   }
-
 }
