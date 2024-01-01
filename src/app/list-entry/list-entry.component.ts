@@ -3,6 +3,7 @@ import { Todo } from "../models/Todo";
 import { TodoService } from "../todo.service";
 import { CommonModule } from '@angular/common';
 import { PriorityComponent } from '../priority/priority.component';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: '[app-list-entry]',
@@ -19,7 +20,7 @@ export class ListEntryComponent {
   showDeleteButton?: boolean;
   private todoService = inject(TodoService);
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.todoService.getShowDeleteButton().subscribe(value => {
@@ -31,6 +32,7 @@ export class ListEntryComponent {
   deleteTodo() {
     if (this.todo) {
       this.todoService.deleteTodo(this.todo.id);
+      this.notificationService.displayNotification('Todo deleted successfully', 'success');
       this.cdr.detectChanges();
     }
   }

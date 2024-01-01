@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Router, RouterOutlet} from '@angular/router';
-import {NavbarComponent} from "./navbar/navbar.component";
-import {SidebarComponent} from "./sidebar/sidebar.component";
+import { Router, RouterOutlet } from '@angular/router';
+import { NavbarComponent } from "./navbar/navbar.component";
+import { SidebarComponent } from "./sidebar/sidebar.component";
+import { MessageBoxComponent } from "./message-box/message-box.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, SidebarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  imports: [CommonModule, RouterOutlet, NavbarComponent, SidebarComponent, MessageBoxComponent]
 })
 export class AppComponent {
   title = 'schule-todo';

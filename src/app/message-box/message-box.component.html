@@ -1,1 +1,8 @@
-<p>message-box works!</p>
+@if (message) {
+<div class="alert" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'error'}"
+    role="alert">
+    <div class="text-center">
+        {{ message }}
+    </div>
+</div>
+}

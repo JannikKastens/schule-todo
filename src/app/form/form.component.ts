@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../models/Todo';
 import { PriorityChooserComponent } from '../priority-chooser/priority-chooser.component';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-form',
@@ -23,7 +24,7 @@ export class FormComponent {
     dueDate: new FormControl('')
   });
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private notificationService: NotificationService) { }
 
   onSubmit() {
     const formValue = this.todoForm.value;
@@ -47,6 +48,7 @@ export class FormComponent {
       false
     );
     this.todoService.addTodo(newTodo);
+    this.notificationService.displayNotification('Todo created successfully', 'success');
     this.todoForm.reset();
   }
 
