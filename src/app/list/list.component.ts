@@ -29,7 +29,7 @@ export class ListComponent {
     this.subscription.add(
       this.todoService.getMoveCompletedTodos().subscribe(moveCompleted => {
         if (moveCompleted) {
-          this.todoService.sortTodos(moveCompleted);
+          this.todoService.sortTodos();
           this.todos = this.todoService.getTodos();
         }
       })

@@ -42,7 +42,7 @@ export class TodoService {
     const storedTodos = localStorage.getItem(this.localStorageKey);
     if (storedTodos) {
       this._todos.next(JSON.parse(storedTodos));
-      this.sortTodos(this.moveCompletedTodos.getValue());
+      this.sortTodos();
     }
   }
 
@@ -131,9 +131,9 @@ export class TodoService {
   }
 
 
-  sortTodos(moveCompletedDown: boolean) {
+  sortTodos() {
     console.log('sortTodos method called');
-    if (moveCompletedDown) {
+    if (this.moveCompletedTodos) {
       const sortedTodos = [...this._todos.getValue()].sort((a, b) => Number(a.completed) - Number(b.completed));
       this._todos.next(sortedTodos);
     }

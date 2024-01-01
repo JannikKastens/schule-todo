@@ -39,6 +39,8 @@ export class ListEntryComponent {
     if (this.todo) {
       this.todo.completed = !this.todo.completed;
       this.todoService.updateTodo(this.todo);
+      this.todoService.sortTodos();
+      this.cdr.detectChanges();
     }
   }
 
