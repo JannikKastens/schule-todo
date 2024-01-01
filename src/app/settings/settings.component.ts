@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,7 +16,7 @@ export class SettingsComponent {
   showDeleteButton?: boolean;
   moveCompletedTodos?: boolean;
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, private notificationService: NotificationService) {
     this.todoService.getShowDeleteButton().subscribe(value => {
       this.showDeleteButton = value;
     });
@@ -36,9 +37,11 @@ export class SettingsComponent {
 
   deleteAllTodos() {
     this.todoService.deleteAllTodos();
+    this.notificationService.displayNotification('Todos erfolgreich gelöscht', 'success');
   }
 
   generateTestTodos() {
     this.todoService.initializeTodos();
+    this.notificationService.displayNotification('Testdaten erfolgreich generiert', 'success');
   }
 }
