@@ -6,12 +6,14 @@
     <div class="col">
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control" placeholder="Search..." (input)="searchTodos(getInputValue($event))" />
-      </div>    </div>
-  <div class="row">
-    <div class="col">
-      <table class="table">
-        <thead>
+        <input type="text" class="form-control" placeholder="Search..." (input)="searchTodos(getInputValue($event))"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <caption>Todo-List</caption>
+          <thead>
           <tr>
             <th>Erledigt</th>
             <th>Prio</th>
@@ -21,11 +23,12 @@
             <th>Kategorie</th>
             <th></th>
           </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           <tr *ngFor="let todo of todos" app-list-entry [todo]="todo"></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

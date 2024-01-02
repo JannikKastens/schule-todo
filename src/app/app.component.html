@@ -2,15 +2,22 @@
 <app-message-box></app-message-box>
 <div class="container mt-5">
   <div class="row">
-    <div class="col-2" *ngIf="isRouteListe">
-      <app-sidebar *ngIf="showSidebar"></app-sidebar>
-      <div class="toggle-button">
-        <button (click)="toggleSidebar()">
-          <i *ngIf="showSidebar; else rightArrow" class="bi bi-arrow-left"></i>
-          <ng-template #rightArrow><i class="bi bi-arrow-right"></i></ng-template>
-        </button>
+    @if (isRouteListe) {
+      <div class="col-2">
+        @if (showSidebar) {
+          <app-sidebar></app-sidebar>
+        }
+        <div class="toggle-button">
+          <button (click)="toggleSidebar()">
+            @if (showSidebar) {
+              <i class="bi bi-arrow-left"></i>
+            } @else {
+              <i class="bi bi-arrow-right"></i>
+            }
+          </button>
+        </div>
       </div>
-    </div>
+    }
     <div class="col">
       <router-outlet></router-outlet>
     </div>
