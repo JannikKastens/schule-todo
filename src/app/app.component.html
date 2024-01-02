@@ -3,7 +3,7 @@
 <div class="container mt-5">
   <div class="row">
     @if (isRouteListe) {
-      <div class="col-2">
+      <div [ngClass]="{'col-2': showSidebar, 'col-1': !showSidebar}">
         @if (showSidebar) {
           <app-sidebar></app-sidebar>
         }
